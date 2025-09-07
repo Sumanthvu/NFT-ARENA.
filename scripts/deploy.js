@@ -4,10 +4,17 @@ const path = require("path");
 
 async function main() {
     // Get the contract factory
-    const ContractFactory = await ethers.getContractFactory("GetSet");
+    const ContractFactory = await ethers.getContractFactory("NFTArena");
 
     // Deploy the contract
-    const contract = await ContractFactory.deploy(/* constructor arguments if any */);
+    const VRF_COORDINATOR_SEPOLIA = "0x9DdfaCa8183c41ad55329BdeeD9F6A8d53168B1B";
+  const KEY_HASH_SEPOLIA = "0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae";
+  const SUBSCRIPTION_ID = "46028468953454012881341962962912460145529398899847134984409356391396909394706";
+     const contract = await ContractFactory.deploy(
+    SUBSCRIPTION_ID,
+    VRF_COORDINATOR_SEPOLIA,
+    KEY_HASH_SEPOLIA
+  );
 
     // Wait for deployment to complete
     await contract.waitForDeployment();
@@ -16,7 +23,7 @@ async function main() {
     console.log(`Contract deployed to: ${contractAddress}`);
 
     // Save contract details for the frontend
-    saveFrontendFiles(contract, "GetSet");
+    saveFrontendFiles(contract, "NFTArena");
 }
 
 function saveFrontendFiles(contract, name) {

@@ -14,6 +14,8 @@
     "hardhat": "^2.22.19"
   },
   "dependencies": {
+    "@chainlink/contracts": "^1.4.0",
+    "@openzeppelin/contracts": "^5.4.0",
     "dotenv": "^16.4.7",
     "next": "^15.2.2",
     "react": "^19.0.0",
